@@ -14,6 +14,11 @@ const Button = styled.button`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-size: 16px;
   font-weight: 600;
+  transition: 0.2s;
+
+  &:hover {
+    filter: brightness(85%);
+  }
 `;
 
 export const ButtonSmall = styled.button<{
@@ -28,6 +33,11 @@ export const ButtonSmall = styled.button<{
   background-color: ${(props) => props.bgcolor ?? 'none'};
   color: ${(props) => props.color ?? "#000"};
   cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    filter: brightness(85%);
+  }
 `;
 
 

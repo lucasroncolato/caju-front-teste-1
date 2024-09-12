@@ -1,6 +1,11 @@
 
+import { useState } from "react";
+
 import * as S from "./styles";
-import RegistrationCard from "../RegistrationCard";
+import RegistrationModal from "./RegistrationModal";
+
+import RegistrationCard from "~/pages/Dashboard/components/RegistrationCard";
+import { Registration, ColumnProps } from '~/types/types';
 
 const allColumns = [
   { status: 'REVIEW', title: "Pronto para revisar" },
@@ -8,34 +13,53 @@ const allColumns = [
   { status: 'REPROVED', title: "Reprovado" },
 ];
 
-type Props = {
-  registrations?: any[];
-};
-const Collumns = (props: Props) => {
+const Columns = (props: ColumnProps) => {
+  const [selectedRegistration, setSelectedRegistration] = useState<Registration | undefined>(undefined);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (registration: Registration) => {
+    setSelectedRegistration(registration);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedRegistration(undefined);
+  };
+
   return (
     <S.Container>
-      {allColumns.map((collum) => {
+      {allColumns.map((column) => {
         return (
-          <S.Column status={collum.status} key={collum.title}>
-            <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {props?.registrations?.map((registration) => {
+          <S.Column status={column.status} key={column.title}>
+            <S.TitleColumn status={column.status}>
+              {column.title}
+            </S.TitleColumn>
+            <S.ColumnContent>
+              {props?.registrations?.map((registration) => {
+                if (registration.status === column.status) {
                   return (
                     <RegistrationCard
-                      data={registration}
+                      column={column.status}
+                      registration={registration}
                       key={registration.id}
+                      refetchData={props.refetchData}
+                      onClick={() => handleCardClick(registration)}
                     />
                   );
-                })}
-              </S.CollumContent>
-            </>
+                }
+              })}
+            </S.ColumnContent>
           </S.Column>
         );
       })}
+      {isModalOpen && (
+        <RegistrationModal
+          registration={selectedRegistration}
+          onClose={handleCloseModal}
+        />
+      )}
     </S.Container>
   );
 };
-export default Collumns;
+export default Columns;
