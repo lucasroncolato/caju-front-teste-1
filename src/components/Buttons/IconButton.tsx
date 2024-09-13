@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const _IconButtonStyled = styled.button`
   cursor: pointer;
-  border: 2px solid #64a98c;
+  border: 2px solid #FF6B35;
   width: fit-content;
   padding: 4px;
-  border-radius: 24px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
   svg {
-    color: #64a98c;
+    color: #FF6B35;
   }
 `;
 

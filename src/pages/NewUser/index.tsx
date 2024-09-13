@@ -116,8 +116,8 @@ const NewUserPage = () => {
         <S.Form onSubmit={validateUser} aria-live="polite">
           <TextField
             id="employeeName"
-            placeholder="Nome" 
-            label="Nome" 
+            placeholder="Insira o nome completo" 
+            label="Nome Completo" 
             value={employeeName} 
             onChange={(e) => setEmployeeName(e.target.value)} 
             error={employeeNameError ?? undefined}
@@ -126,8 +126,8 @@ const NewUserPage = () => {
           />
           <TextField 
             id="email"
-            placeholder="Email" 
-            label="Email" 
+            placeholder="Insira o e-mail" 
+            label="E-mail" 
             type="email" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
@@ -137,7 +137,7 @@ const NewUserPage = () => {
           />
           <TextField 
             id="cpf"
-            placeholder="CPF" 
+            placeholder="Insira o cpf" 
             label="CPF" 
             value={cpf} 
             onChange={(e) => handleCPFChange(e.target.value)} 

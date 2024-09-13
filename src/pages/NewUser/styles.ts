@@ -18,6 +18,7 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  border-radius: 17px;
 
   @media only screen and (max-width: 992px) {
     width: 90%;
